@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction Test</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;0,800;1,200;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="script.js"></script>
+    <script src="login.js"></script>
+</head>
+<body>
+    <!--=====NAVBAR=====-->
+  <header>
+    <nav class="navbar">
+      <a class="logo" href="./index.html">True Colors Personality Test<span>.</span></a>
+      <ul class="menu-links">
+        <span id="close-menu-btn" class="material-symbols-outlined">close</span>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./introduction.html">Personality Test</a></li>
+        <li><a href="./aboutUs.html">About us</a></li>
+        <li><a href="./contactUs.html">Contact</a></li>
+        <li><a href="./login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+    <section class="intro-section">
+        
+        <div class="container-intro">
+        <h1>Exploring Your Colors</h1>
+        
+        <div >
+            <p>
+                This short test offers a glimpse into your personality. Answer each question by allocating 
+                points to phrases that resonate with you. It's a quick and insightful journey—respond based 
+                on how you feel, and let's discover more about your colorful personality!
+                <br/><br/>
+                Below are 11 incomplete sentences that describe people. Each sentence has four possible
+                endings. Give four points to the phrase that is “most like you,” three points to the phrase
+                that is “next most like you,” two points to the next phrase, and one point to the phrase
+                that is “least like you.”
+            </p>
+        </div>
+        <div>
+                <br/>
+                <br/>
+                <button id="btn-test">Personality Test</button>
+                <br/>
+                <br/>
+                <script>
+                  document.addEventListener("DOMContentLoaded", function () {
+                  const testBtn = document.querySelector("#btn-test");
+                  if (testBtn) {
+                    testBtn.addEventListener("click", () => {
+                      // Redirect to the questionnaire.html page
+                      if (validateLoginQ()=="true") {
+
+                      window.location.href = "./questionnaire.html";
+                      } 
+                    });
+                  }
+
+                  //validate if the user is logged in to go to the question section.  
+                  
+
+
+                });
+                </script>
+        </div>
+    </div></section>
+    
+</body>
+</html>

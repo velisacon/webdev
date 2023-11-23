@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;0,800;1,200;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <script src="script.js"></script>
+</head>
+<body>
+    <!--=====NAVBAR=====-->
+    <header>
+        <nav class="navbar">
+          <a class="logo" href="./index.html">True Colors Personality Test<span>.</span></a>
+          <ul class="menu-links">
+            <span id="close-menu-btn" class="material-symbols-outlined">close</span>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./introduction.html">Personality Test</a></li>
+            <li><a href="./aboutUs.html">About us</a></li>
+            <li><a href="./contactUs.html">Contact</a></li>
+            <li><a href="./login.html">Login</a></li>
+          </ul>
+         <!-- <span id="btn-signin" class="material-symbols-outlined">menu</span> -->
+        </nav>
+      </header>
+    <section class="result-section">
+        <div class="containerresults">
+            <table id="myTable" border="1">
+                <tr>
+                    <th>Number</th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                    <th>D</th>
+                </tr>       
+            </table>
+        </div>
+
+        <button id="showResultsButton">Show your colors</button>
+        <button id="tryAgainButton">Try Again</button>
+    </section>
+
+    <script>DisplayResults()</script>
+    <script>
+        // Asociar el evento de clic al botón
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("showResultsButton").addEventListener("click", showColorResults);
+        });
+    </script>
+
+    
+<script>
+//evento boton try again 
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("tryAgainButton").addEventListener("click", function() {
+        var confirmAction = confirm("All your current results will be lost and the test will restart. Are you sure you want to continue?");
+        if (confirmAction) {
+            window.location.href = 'questionnaire.html'; // Reemplaza con la URL correcta
+        }
+    });
+});</script>
+
+    </section>
+</body>
+</html>
+      <!--  <button id="showResultsButton">Mostrar Resultados</button>
+    
+    
+    <script>DisplayResults()</script>
+</body>
+</html>
+
+-->
