@@ -19,6 +19,8 @@ function Login()
     }
 }
 
+
+// This functions is used to update the answers to each question
 function updateArray()
 {
     
@@ -60,6 +62,7 @@ function updateArray()
     return succes;
 }
 
+// This function is used to validate it the user answered all the questions
 function ValidateArray()
 {
     //Si estamos en la pregunta 11 validamos y mndamos mensaje de las preguntas que falta contestar
@@ -98,12 +101,13 @@ return succes;
 }
 
 
-
+// This functions clear all variables created during the user exectuion 
 function LogOut()
 {
     cache.clear();
 }
 
+//This function is used to navigate in the different questions
 function GoToQuestion(question)
 {
     if (updateArray()==1)
@@ -117,7 +121,7 @@ function GoToQuestion(question)
 
 
 
-
+// This functions is used move to the next questions according to the navigation buttons
 function MoveNext()
 {
     if (parseInt(updateArray())==1)
@@ -144,12 +148,15 @@ function MoveNext()
     }
 }
 
+// This functions is used to display the results
 function SeeResults()
 {
     window.open("results.html")
     window.close("questionnaire.html")
 }
 
+
+// This functions is used to move back in the questions according to the navigation buttons
 function MoveBack()
 {
     if (parseInt(updateArray())==1)
@@ -167,6 +174,7 @@ function MoveBack()
     }
 }
 
+// This functions is used to display the question and the answers
 function DisplayQuestion()
 {
     var divMessages = document.getElementById("messagesdiv");
@@ -201,6 +209,7 @@ function DisplayQuestion()
 
 }
 
+// This functions is used to assing the options in the right div accorind to the user answers
 function SetOptionPosition(divtemp, divParent)
 {
     switch (parseInt(divParent))
@@ -225,7 +234,7 @@ function SetOptionPosition(divtemp, divParent)
 }
 
 
-
+// This functions is used to enable the drag and drop
 function DragDrop()
 {
     let lists = document.getElementsByClassName("list");
@@ -297,7 +306,7 @@ function DragDrop()
     }
 }
 
-
+// This functions is used to populate and display the results
 function DisplayResults()
 {
     var cache = sessionStorage
@@ -314,7 +323,7 @@ function DisplayResults()
         table.deleteRow(1);
     }
     // Create rows and columns
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i <= 10; i++) {
       // Create a new row
       var row = table.insertRow();
 
@@ -337,19 +346,56 @@ function DisplayResults()
         // Add some content to the cell
         //cell.innerHTML = "Row " + (i + 1) + ", Column " + (j + 1);
       }
+
+      var totals = {
+        'Orange': parseInt(totalA),
+        'Green': parseInt(totalB),
+        'Blue': parseInt(totalC),
+        'Gold': parseInt(totalD)
+    };
+
+    var sortedTotals = Object.entries(totals).sort((a, b) => b[1] - a[1]);
+    var topColors = [sortedTotals[0][0], sortedTotals[1][0]];
+    console.log(topColors);
+
+
+
       var row = table.insertRow();
       var cellTotal = row.insertCell();
       cellTotal.innerHTML="TOTAL"
-      var cellTotalA = row.insertCell();
-      cellTotalA.innerHTML=totalA
-      var cellTotalB = row.insertCell();
-      cellTotalB.innerHTML=totalB
-      var cellTotalC = row.insertCell();
-      cellTotalC.innerHTML=totalC
-      var cellTotalD = row.insertCell();
-      cellTotalD.innerHTML=totalD
+      
+    var cellTotalA = row.insertCell();
+    if (topColors[0] == 'Orange' || topColors[1] == 'Orange')
+        cellTotalA.innerHTML="<strong>" + totalA + "</strong>";
+    else
+        cellTotalA.innerHTML=totalA
+
+    var cellTotalB = row.insertCell();
+    if (topColors[0] == 'Green' || topColors[1] == 'Green')
+        cellTotalB.innerHTML="<strong>" + totalB + "</strong>";
+    else
+        cellTotalB.innerHTML=totalB
+
+    var cellTotalC = row.insertCell();
+    if (topColors[0] == 'Blue' || topColors[1] == 'Blue')
+        cellTotalC.innerHTML="<strong>" + totalC + "</strong>";
+    else
+        cellTotalC.innerHTML=totalC
+
+    var cellTotalD = row.insertCell();
+
+    if (topColors[0] == 'Gold' || topColors[1] == 'Gold')
+        cellTotalD.innerHTML="<strong>" + totalD + "</strong>";
+    else
+        cellTotalD.innerHTML=totalD
+
+    
+
+
+
 }
 
+// This functions is used to display the colors according the test response
 function showColorResults() {
     DisplayResults();
 
@@ -469,116 +515,12 @@ function showColorResults() {
     resultPage.document.write('<html lang="en-CA"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="style.css"><title>Colors</title></head><body>');
     resultPage.document.write(colorContent[topColors[0]]); // Insertar el contenido del primer color
     resultPage.document.write(colorContent[topColors[1]]); // Insertar el contenido del segundo color
-    resultPage.document.write('</body></html>');
+    resultPage.document.write('<br><center><button id="btn-test" onclick="closePage()">Close</button></center><br><script>function closePage() {  window.close();}</script></body></html>');
 }
 
-/*
-function showColorResults() {
-    DisplayResults(); // Llama a DisplayResults para asegurarse de que la tabla está actualizada
 
-    // Extraer los totales directamente de la tabla
-    var table = document.getElementById("myTable");
-    var rows = table.rows;
-    var lastRow = rows[rows.length - 1]; // Última fila con los totales
-    var totalA = parseInt(lastRow.cells[1].innerHTML);
-    var totalB = parseInt(lastRow.cells[2].innerHTML);
-    var totalC = parseInt(lastRow.cells[3].innerHTML);
-    var totalD = parseInt(lastRow.cells[4].innerHTML);
 
-    // Calcular las dos puntuaciones más altas y asociarlas con colores
-    var totals = { 'Orange': totalA, 'Green': totalB, 'Blue': totalC, 'Gold': totalD };
-    var sortedTotals = Object.entries(totals).sort((a, b) => b[1] - a[1]);
-    var topColor = sortedTotals[0][0];
-
-    // Diccionario de URLs para cada color
-    var colorPages = {
-        'Orange': 'orange.html',
-        'Green': 'green.html',
-        'Blue': 'blue.html',
-        'Gold': 'gold.html'
-    };
-
-    // Abrir la página correspondiente al color predominante
-    window.open(colorPages[topColor], '_blank');
-}
-*/
-/*
-function showColorResults() {
-    DisplayResults(); // Llama a DisplayResults para asegurarse de que la tabla está actualizada
-
-    // Extraer los totales directamente de la tabla
-    var table = document.getElementById("myTable");
-    var rows = table.rows;
-    var lastRow = rows[rows.length - 1]; // Última fila con los totales
-    var totalA = parseInt(lastRow.cells[1].innerHTML);
-    var totalB = parseInt(lastRow.cells[2].innerHTML);
-    var totalC = parseInt(lastRow.cells[3].innerHTML);
-    var totalD = parseInt(lastRow.cells[4].innerHTML);
-
-    // Calcular las dos puntuaciones más altas y asociarlas con colores
-    var totals = { 'Orange': totalA, 'Green': totalB, 'Blue': totalC, 'Gold': totalD };
-    var sortedTotals = Object.entries(totals).sort((a, b) => b[1] - a[1]);
-    var topTwo = sortedTotals.slice(0, 2);
-
-    // Mostrar los resultados en una nueva página
-    var resultPage = window.open('', '_blank');
-    resultPage.document.write('<h1>Your results</h1>');
-    resultPage.document.write(`<p>First color: ${topTwo[0][0]} (${topTwo[0][1]} points)</p>`);
-    resultPage.document.write(`<p>Second color ${topTwo[1][0]} (${topTwo[1][1]} points)</p>`);
-
-    var colorDescriptions = {
-        'Blue': 'Enthusiastic…Sympathetic…Personal?<br>' +
-            'Warm…Communicative…Compassionate?<br>' +
-            'Idealistic…Spiritual…Sincere?<br>' +
-            'Peaceful…Flexible…Imaginative?<br>' +
-            'At school…<br>' +
-            'I have a strong desire to be a role model for my classmates.<br>' +
-            'I am skilled at motivating and interacting with others – I make friends easily ' +
-            'and like having friends.<br>' +
-            'I respond well to encouragement rather than competition.<br>' +
-            'I like being artistic, communicating with people, and helping people.',
-
-    'Green': 'Analytical…Global…Conceptual?<br>' +
-             'Cool…Calm…Collected?<br>' +
-             'Inventive…Logical…Problem Solver?<br>' +
-             'Abstract…Creative…Investigative?<br>' +
-             'At school…<br>' +
-             'I am conceptual and am an independent thinker.<br>' +
-             'For me, work is play.<br>' +
-             'I am drawn to constant challenge.<br>' +
-             'I like to develop models and explore ideas.',
-
-    'Gold': 'Loyal…Dependable…Prepared?<br>' +
-            'Thorough…Sensible…Punctual?<br>' +
-            'Faithful…Stable…Organized?<br>' +
-            'Caring…Concerned…Helper?<br>' +
-            'At school…<br>' +
-            'I am stable and organized.<br>' +
-            'I am detailed oriented and predictable.<br>' +
-            'I believe that work comes before play, even if I must work overtime to ' +
-            'complete the job.<br>' +
-            'I understand and respect authority and am comfortable with how school ' +
-            'goes.',
-
-    'Orange': 'Witty…Charming…Spontaneous?<br>' +
-              'Impulsive…Generous…Impactful?<br>' +
-              'Optimistic…Eager…Bold?<br>' +
-              'Physical…Immediate…Courageous?<br>' +
-              'At school…<br>' +
-              'I learn by doing and experiencing, rather than by listening and reading.<br>' +
-              'I like being physically involved in the learning process and am motivated by my ' +
-              'own natural competitive self and sense of fun.<br>' +
-              'I am a natural performer.<br>' +
-              'I like doing tasks that allow me to be independent and free.'
-    };
-
-    resultPage.document.write(`<p>Are you ${topTwo[0][0]}: ${colorDescriptions[topTwo[0][0]]}</p>`);
-    resultPage.document.write(`<p>Are you ${topTwo[1][0]}: ${colorDescriptions[topTwo[1][0]]}</p>`);
-}
-
-*/
-
-//PRepare all the questions and set the answers to 0 for all options
+//Prepare all the questions and set the answers to 0 for all options
 function PrepareQuestionnaire()
 {
 
@@ -727,22 +669,15 @@ function PrepareQuestionnaire()
 }
 
 
-
-
-//login
-
-
+//login used to validate the user
 function getUsernameAndPassword() {
     username = $('#user').val();
     password = $('#password').val(); 
-   
     validateLogin(username, password);
-  
-
 }
 
 
-
+//Function requested to validate the authentification
 function validateLogin(username, password) {
     
     var find=false;
@@ -779,6 +714,7 @@ function validateLogin(username, password) {
     }
 }
 
+//This function generates a random password
 function generatePassword() {
     // List of possible characters for the password
     var possibleCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -801,33 +737,20 @@ function generatePassword() {
 
 
 function ShowRegister(){
-
-
-
     $(".register").toggle();
-
-
-
-
-
-
 }
 
 
+//Function used to register a new user
 function registerNewUser(){
     // Get the current value of 'i' from localStorage
     var storedCounter = localStorage.getItem('counter');
-   
     // Convert the value to a number or set it to 0 if it's not valid
     var i = parseInt(storedCounter) || 0;
-    
     var nameLogin = $('#nName').val();
     var newUsername = $('#nUsername').val();
     var newPassword = $('#passwordGenerated').val();
-    
-   
    if  (userNameValidation(newUsername)){
-   
        alert("sorry, this username already exits")
    }else{
        var data = {
@@ -851,14 +774,9 @@ function registerNewUser(){
       $('#passwordGenerated').val("")
    
    }
+}
    
-   
-    
-   
-   
-   }
-   
-   
+//Validation of the user name   
    function userNameValidation(username){
    
        var inputUsername = username;
@@ -878,12 +796,10 @@ function registerNewUser(){
              
            }
        }
-       
        return false;
-       
    }
    
-   
+//This button is used to activate or not when the user is logged
    function activateButton(){
    
        if (username.trim() === "" || password.trim() === "") {
@@ -893,7 +809,4 @@ function registerNewUser(){
    
            $('#btn-form').prop("disabled", false);
        }
-   
-   
-   
    }

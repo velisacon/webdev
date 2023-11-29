@@ -28,6 +28,12 @@
   
 }
 
+body, html {
+  margin: 0;
+  padding: 0;
+  
+}
+
 /*=====HOME=====*/
 
 .title {
@@ -144,9 +150,6 @@ header {
 .container .box-container .box{
   box-shadow: 0 5px 10px rgba(0,0,0,.2);
   border-radius: 10px;
- /* background-image: url('./img/boxes.jpg');
-  background-position: center;
-  background-size: cover;*/
   background-color: var(--color-black);
   text-align: center;
   padding:30px 20px;
@@ -221,15 +224,7 @@ header .navbar {
   header {
     padding: 10px;
   }
-  header.show-mobile-menu::before {
-    content: "";
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(5px);
-  }
+ 
   .navbar .logo {
     font-size: 1.8rem;
   }
@@ -248,9 +243,7 @@ header .navbar {
     padding: 70px 40px 0;
     transition: left 0.2s ease;
   }
-  header.show-mobile-menu .navbar .menu-links {
-    left: 0;
-  }
+
   .navbar a {
     color: var(--color-black);
   }
@@ -270,10 +263,69 @@ header .navbar {
   }
 }
 
+.user-name, #user {
+  font-weight: 600;
+  font-style: italic;
+  color: var(--color-acent);
+  padding-left: 1rem;
+  font-size: 20px;
+}
+
+
+/*--=====FOOTER=====--*/
+/* Estilos generales del pie de página */
+.footer {
+  background-color: black;
+  padding: 20px 0;
+  text-align: center;
+  border-top: 5px solid var(--color-primary); /* Línea rosa en la parte superior */
+  padding-top: 0%;
+  margin-top: 0%;
+}
+
+.container-footer {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.contributors {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Ajustar al contenido */
+  margin-top: 10px;
+  color: var(--color-secondary);
+  padding-bottom: 2rem;
+}
+.project-title {
+  color: var(--color-primary);
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 1rem;
+}
+
+.contributors span {
+  white-space: nowrap; /* Evitar salto de línea en texto largo */
+  margin: 0 5px; /* Espacio entre nombres */
+}
+
+/* Estilos para la información de la clase */
+.class-info p {
+  margin: 5px 0;
+  color: var(--color-light);
+  font-style: italic;
+  font-size: 15px;
+}
+
 
 
 /*===== CONTACT PAGE=====*/
 
+.contactUs{
+  background-image: url('./img/contact-section.jpg');
+  background-position: center;
+  background-size: cover;
+}
 
 .container-contact{
   margin-top: 3rem;
@@ -289,9 +341,8 @@ header .navbar {
 
 .contact-section{
   height: 100vh;
-  background-image: url('./img/contact-section.jpg');
-  background-position: center;
-  background-size: cover;
+  width: 100%; 
+  
   display: flex;
   align-items: center;
   padding: 0 20px;
@@ -343,6 +394,12 @@ input[type=text], select, textarea {
 
 /*===== ABOUT US PAGE =====*/
 
+.aboutUs{
+  background-image: url('./img/aboutussection.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
 .title-aboutUs{
   text-align: center;
   color: var(--color-primary);
@@ -374,9 +431,7 @@ input[type=text], select, textarea {
 
 .about-section{
   height: 100vh;
-  background-image: url('./img/aboutussection.jpg');
-  background-position: center;
-  background-size: cover;
+  width: 100%; 
   display: flex;
   align-items: center;
   padding: 0 20px;
@@ -398,11 +453,15 @@ input[type=text], select, textarea {
 
 /*===== INTRODUCTION PAGE QUESTIONNAIRE =====*/
 
-.intro-section{
-  height: 100vh;
+.introduction{
   background-image: url('./img/intro-test.jpg');
   background-position: center;
   background-size: cover;
+}
+
+.intro-section{
+  height: 100vh;
+  width: 100%; 
   display: flex;
   align-items: center;
   padding: 0 20px;
@@ -469,14 +528,16 @@ input[type=text], select, textarea {
 
 /*=====  test personality =====*/
 
-
-
-.test-section{
-  height: 100vh;
+.questionnaire{
   background-image: url('./img/test.jpg');
   background-attachment: fixed !important;
   background-position:center;
   background-size: cover;
+}
+
+.test-section{
+  height: 100vh;
+  width: 100%; 
   padding: 0 20px;
 }
 
@@ -517,23 +578,23 @@ button[id^="btnqtn"] {
 }
 
 #four{
-  background-image: url('./img/number1.png');
+  background-image: url('./img/number4.png');
   background-position:center;
   background-size: cover;
 
 } 
 #three{
-  background-image: url('./img/number2.png');
+  background-image: url('./img/number3.png');
   background-position:center;
   background-size: cover;
 } 
 #two{
-  background-image: url('./img/number3.png');
+  background-image: url('./img/number2.png');
   background-position:center;
   background-size: cover;
 }
 #one{
-  background-image: url('./img/number4.png');
+  background-image: url('./img/number1.png');
   background-position:center;
   background-size: cover;
 }
@@ -599,13 +660,33 @@ button {
 
 /*=====  result =====*/
 
-.result-section {
-  height: 100vh;
+.results{
+  background-image: url('./img/result.jpg');
   background-attachment: fixed !important;
   background-position:center;
   background-size: cover;
+}
+
+.description {
+  color: var(--color-secondary);
+  text-align: center;
+  margin-top: 3rem;
+  padding-bottom: 2rem;
+  font-size: 20px;
+  font-weight: 500;
+  
+  width: 800px;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+}
+
+
+.result-section {
+  height: 100vh;
+  
   padding: 10vh 20px;
-  background-image: url('./img/result.jpg');
+  width: 100%; 
+  
   color: var(--color-light);
   text-align: center;
 }
@@ -665,16 +746,22 @@ button {
 /*=====  colors =====*/
 
 /*=====  orange =====*/
+
+
 .orange-section {
+  background-image: url('./img/resultados.jpg');
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-position: center;
+  background-size: cover;
+  background-size: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%; 
   height: 100vh;
-  background-attachment: fixed !important;
-  background-position: center;
-  background-size: 100%;
+  
   padding: 10vh 20px;
-  background-image: url('./img/resultados.jpg');
+ 
   color: var(--color-light);
   text-align: center;
 }
@@ -733,16 +820,20 @@ button {
 
 
 /*=====  blue =====*/
+
+
 .blue-section {
+  background-image: url('./img/resultados.jpg');
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-position: center;
+  background-size: cover;
+  background-size: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-attachment: fixed !important;
-  background-position: center;
-  background-size: 100%;
+  width: 100%; 
   padding: 10vh 20px;
-  background-image: url('./img/resultados.jpg');
   color: var(--color-light);
   text-align: center;
 }
@@ -801,16 +892,20 @@ button {
 
 
 /*=====  green =====*/
+
+
 .green-section {
+  background-image: url('./img/resultados.jpg');
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-position: center;
+  background-size: cover;
+  background-size: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-attachment: fixed !important;
-  background-position: center;
-  background-size: 100%;
   padding: 10vh 20px;
-  background-image: url('./img/resultados.jpg');
+  width: 100%; 
   color: var(--color-light);
   text-align: center;
 }
@@ -869,16 +964,20 @@ button {
 
 
 /*=====  gold =====*/
+
+
 .gold-section {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-attachment: fixed !important;
+  width: 100%; 
+  background-image: url('./img/resultados.jpg');
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
   background-position: center;
+  background-size: cover;
   background-size: 100%;
   padding: 10vh 20px;
-  background-image: url('./img/resultados.jpg');
   color: var(--color-light);
   text-align: center;
 }
@@ -939,18 +1038,20 @@ button {
 
 /*=====  login =====*/
 
-
-
+.login{
+  background-image: url('./img/login.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
 
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url('./img/login.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  width: 100%; 
+  
 }
 
 form {
@@ -1001,4 +1102,12 @@ button#btn-ShowRegister:hover {
 
 .register {
   display: none; /* Hide the registration form initially */
+}
+
+.user-name, #uName {
+  font-weight: 600;
+  font-style: italic;
+  color: var(--color-acent);
+  padding-left: 1rem;
+  font-size: 20px;
 }
